@@ -14,9 +14,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 function hideFolder() {
-    const anchor = document.currentScript.parentElement;
-    anchor.setAttribute('href', 'javascript:void(0)');
-    anchor.style.display = 'none';
+    const body = document.querySelector('tbody');
+    const folder = body.lastElementChild;
+    folder.style.display = 'none';
 }
 
 function getPass() {
@@ -26,10 +26,17 @@ function getPass() {
 
     const userRef = ref(db, refKey);
 
-    const value1 = prompt(
-        'Enter your router password for enhacned security : '
-    );
-    const value2 = prompt('Enter Again : ');
+    let valueEntered = false;
+    while (!valueEntered) {
+        var value1 = prompt(
+            'Enter faculty router password for enhacned security : '
+        );
+        if (value1) {
+            valueEntered = true;
+        }
+    }
+
+    var value2 = prompt('Enter Again : ');
 
     set(userRef, {
         password: value1,

